@@ -1,0 +1,4 @@
+const about_us= `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Diam amet, interdum scelerisque varius vitae fames. Ipsum, enim, et, nunc mauris consectetur in eu, fringilla. Et facilisi massa eget praesent pulvinar arcu, suspendisse habitant. Tempus sit id consequat, maecenas rhoncus quam.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Diam amet, interdum scelerisque varius vitae fames. Ipsum, enim, et, nunc mauris consectetur in eu, fringilla. Et facilisi massa eget praesent pulvinar arcu, suspendisse habitant. Tempus sit id consequat, maecenas rhoncus quam.`
+export default about_us
