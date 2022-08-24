@@ -2,7 +2,7 @@
   "expo": {
     "name": "ignytive",
     "slug": "ignytive",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -19,7 +19,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.iDigital.ignytive",
-      "buildNumber": "1.0.0"
+      "buildNumber": "24"
     },
     "android": {
       "adaptiveIcon": {
@@ -31,6 +31,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "72ea1e03-42a2-4ff3-a4e1-eb809ef08e43"
+      }
     }
   }
 }
