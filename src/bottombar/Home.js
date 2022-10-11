@@ -1,4 +1,6 @@
 import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -12,10 +14,41 @@ import {
   TouchableNativeFeedback,
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { set } from "react-native-reanimated";
 import Post from "../components/PostBox";
 import SearchBarr from "../components/SearchBarr";
 const { width, height } = Dimensions.get("window");
+
 export default function Home({navigation}) {
+
+  const[postData, setPostData] = useState([]);
+
+  const callPostApi = () =>{
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "Bearer 4WUeDVNacln2DRv-paLbDShuOnNcQEy2");
+    
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+    
+    fetch("https://api.ignytive.com/items/posts", requestOptions)
+      .then(response => response.json())
+      .then(result =>{
+
+        console.log(result)
+
+        setPostData(result.data)
+
+      })
+      .catch(error => console.log('error', error));
+  }
+
+  useEffect(()=>{
+    callPostApi()
+  },[]);
+
   return (
     <SafeAreaView style={styles.container}>
           <StatusBar backgroundColor="#ffffff"
@@ -66,10 +99,15 @@ export default function Home({navigation}) {
             </View>
             </TouchableNativeFeedback>
           </View>
-          <Post />
-          <Post />
-          <Post />
-          <Post />
+
+
+          {/* {
+            postData.map((dataSingle, index) => {
+              <Post  />
+            })
+          } */}
+          <Post />        
+         
       {/* <View style={{height:height/(8*3)}}></View> */}
       </View>
         </ScrollView>

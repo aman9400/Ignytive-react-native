@@ -16,6 +16,7 @@ import Button from "../components/Button";
 import TextInput from "../components/TextInput";
 import BackButton from "../components/BackButton";
 import { theme } from "../core/theme";
+// import SyncStorage from 'sync-storage';
 import { Keyboard, TouchableWithoutFeedback } from "react-native";
 import { emailValidator } from "../helpers/emailValidator";
 import { passwordValidator } from "../helpers/passwordValidator";
@@ -37,8 +38,12 @@ export default function LoginScreen({ navigation }) {
     }
 
     let dataToSend = { email: email, password: password };
+    // navigation.reset({
+    //   index: 0,
+    //   routes: [{ name: "HomeScreen" }],
+    // });
 
-    fetch("https://api.ignytive.com/ignytive/auth/authenticate?fields=*.*", {
+    fetch("https://api.ignytive.com/auth/login?fields=*.*", {
       method: "POST",
       body: JSON.stringify(dataToSend),
       headers: {
@@ -48,19 +53,26 @@ export default function LoginScreen({ navigation }) {
     })
       .then((response) => response.json())
       .then((responseJson) => {
-        if (responseJson.data.token == null) {
-          // alert("Please check your email or password.");
-          alert("Logged in Successfully! : " + responseJson.data.user.email);
-        } else {
-          alert("Logged in Successfully! : " + responseJson.data.user.email);
+
+        console.log(responseJson.data != null)
+        console.log(responseJson)
+        if (responseJson.data.access_token != null) {
+
+          // save the user_token for further use
+          // SyncStorage.set("access_token", responseJson.data.access_token)
+          
+          alert("Logged in Successfully! :       ");
           navigation.reset({
             index: 0,
             routes: [{ name: "HomeScreen" }],
           });
+        } else {
+          alert(responseJson.errors[0].message );
+        
         }
       })
       .catch((error) => {
-        alert("Please check your email or password.");
+        alert("Please check your email or password. " + error);
       });
   };
 

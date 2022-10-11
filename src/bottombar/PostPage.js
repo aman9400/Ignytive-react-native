@@ -14,7 +14,63 @@ import {
 import React from "react";
 import HeaderBack from "../components/header/HeaderBack";
 const { height, width } = Dimensions.get("window");
+
 export default function PostPage({navigation}) {
+
+  const uploadFile = () =>{
+    // var photo = {
+    //   uri: user.profilePicture,
+    //   type: 'image/jpeg',
+    //   name: 'photo.jpg',
+    // };
+    
+    // var form = new FormData();
+    // form.append("ProfilePicture", photo);
+    
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "Bearer 4WUeDVNacln2DRv-paLbDShuOnNcQEy2");
+    
+    var formdata = new FormData();
+    formdata.append("file", fileInput.files[0], "/C:/Users/lenovo/Downloads/IMG_20221006_203218.jpg");
+    
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: formdata,
+      redirect: 'follow'
+    };
+    
+    fetch("https://api.ignytive.com/files",
+     requestOptions)
+      .then(response => response.json())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+  }
+
+  const createPost = () => {
+    var myHeaders = new Headers();
+    myHeaders.append("Authorization", "Bearer 4WUeDVNacln2DRv-paLbDShuOnNcQEy2");
+    myHeaders.append("Content-Type", "application/json");
+    
+    var raw = JSON.stringify({
+      "body": "hellodsm csmd",
+      "status": 1,
+      "media": "bd52c4d9-75de-4ef4-8fdd-55f40ce2cd53"
+    });
+    
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+    
+    fetch("https://api.ignytive.com/items/posts", requestOptions)
+      .then(response => response.json())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+  }
+
   return (
     <TouchableWithoutFeedback
     onPress={() => {

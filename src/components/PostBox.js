@@ -10,7 +10,9 @@ import {
 } from "react-native";
 import ImageSlider from "./ImageSlider";
 const { width, height } = Dimensions.get("window");
+
 export default function PostBox({navigation}) {
+
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <StatusBar backgroundColor="#ffffff"
