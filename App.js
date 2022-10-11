@@ -36,7 +36,7 @@ export default function App() {
     <Provider theme={theme}>
       <NavigationContainer independent={true}>
         <Stack.Navigator
-          initialRouteName="Splash"
+          initialRouteName="HomeScreen"
           screenOptions={{ headerShown: false }}
         >
           <Stack.Screen name="Splash" component={Splash} />

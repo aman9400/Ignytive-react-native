@@ -19,56 +19,57 @@ import Post from "../components/PostBox";
 import SearchBarr from "../components/SearchBarr";
 const { width, height } = Dimensions.get("window");
 
-export default function Home({navigation}) {
+export default function Home({ navigation }) {
+  const [postData, setPostData] = useState([]);
 
-  const[postData, setPostData] = useState([]);
-
-  const callPostApi = () =>{
+  const callPostApi = () => {
     var myHeaders = new Headers();
-    myHeaders.append("Authorization", "Bearer 4WUeDVNacln2DRv-paLbDShuOnNcQEy2");
-    
+    myHeaders.append(
+      "Authorization",
+      "Bearer 4WUeDVNacln2DRv-paLbDShuOnNcQEy2"
+    );
+
     var requestOptions = {
-      method: 'GET',
+      method: "GET",
       headers: myHeaders,
-      redirect: 'follow'
+      redirect: "follow",
     };
-    
+
     fetch("https://api.ignytive.com/items/posts", requestOptions)
-      .then(response => response.json())
-      .then(result =>{
+      .then((response) => response.json())
+      .then((result) => {
+        console.log(result);
 
-        console.log(result)
-
-        setPostData(result.data)
-
+        setPostData(result.data);
       })
-      .catch(error => console.log('error', error));
-  }
+      .catch((error) => console.log("error", error));
+  };
 
-  useEffect(()=>{
-    callPostApi()
-  },[]);
+  useEffect(() => {
+    callPostApi();
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
-          <StatusBar backgroundColor="#ffffff"
-          barStyle={'dark-content'} />
+      <StatusBar backgroundColor="#ffffff" barStyle={"dark-content"} />
       <View style={styles.header}>
-        <TouchableNativeFeedback onPress={()=>navigation.navigate('Complete Profile')}>
-        <Image
-          source={require("../assets/profile1.jpg")}
-          style={styles.profile1}
-        />
+        <TouchableNativeFeedback
+          onPress={() => navigation.navigate("Complete Profile")}
+        >
+          <Image
+            source={require("../assets/profile1.jpg")}
+            style={styles.profile1}
+          />
         </TouchableNativeFeedback>
         <SearchBarr />
         <TouchableOpacity>
-        <View>
+          <View>
             <Image source={require("../assets/chat.png")} style={styles.chat} />
-            </View>
-            </TouchableOpacity>
+          </View>
+        </TouchableOpacity>
       </View>
-        <ScrollView showsVerticalScrollIndicator={false}>
-      <View style={styles.scrollcontainer}>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.scrollcontainer}>
           <View style={styles.createpostbox}>
             <View style={styles.createedit}>
               <Image
@@ -91,26 +92,30 @@ export default function Home({navigation}) {
               </View>
             </TouchableNativeFeedback>
             <TouchableNativeFeedback>
-            <View style={styles.createall}>
-              <Image
-                style={{ height: 16, width: 20.3 }}
-                source={require("../assets/camera.png")}
-              />
-            </View>
+              <View style={styles.createall}>
+                <Image
+                  style={{ height: 16, width: 20.3 }}
+                  source={require("../assets/camera.png")}
+                />
+              </View>
             </TouchableNativeFeedback>
           </View>
-
 
           {/* {
             postData.map((dataSingle, index) => {
               <Post  />
             })
           } */}
-          <Post />        
-         
-      {/* <View style={{height:height/(8*3)}}></View> */}
-      </View>
-        </ScrollView>
+          <Post
+            userName={"User Name"}
+            userLogo={require("../assets/profile1.jpg")}
+            postImage={require("../assets/profile1.jpg")}
+            description={"this is description for my new post"}
+          />
+
+          {/* <View style={{height:height/(8*3)}}></View> */}
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -134,7 +139,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     borderBottomWidth: 2,
     borderBottomColor: "#D2D7DE",
-    backgroundColor:'#fff'
+    backgroundColor: "#fff",
   },
   chat: {
     height: 38.9,

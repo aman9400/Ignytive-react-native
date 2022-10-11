@@ -35,6 +35,7 @@ export default function Messages() {
   }, []);
   const renderBubble = (props) => {
     return (
+    
       <Bubble
         {...props}
         wrapperStyle={{
@@ -97,7 +98,7 @@ export default function Messages() {
     );
   };
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1}}>
     <TouchableWithoutFeedback
     onPress={() => {
       Keyboard.dismiss();

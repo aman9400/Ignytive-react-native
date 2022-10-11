@@ -11,7 +11,7 @@ import {
 import ImageSlider from "./ImageSlider";
 const { width, height } = Dimensions.get("window");
 
-export default function PostBox({navigation}) {
+export default function PostBox({userLogo,userName,description,postImage,navigation}) {
 
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
@@ -22,9 +22,9 @@ export default function PostBox({navigation}) {
           <View style={styles.header}>
             <Image
               style={styles.profile2}
-              source={require("../assets/profile2.jpg")}
+              source={userLogo}
             />
-            <Text style={styles.profile2name}>Vanessa Hudgens</Text>
+            <Text style={styles.profile2name}>{userName}</Text>
           </View>
           <View style={styles.dots}>
             <View style={styles.smldots}></View>
@@ -33,12 +33,11 @@ export default function PostBox({navigation}) {
           </View>
         </View>
         <View style={styles.postdescription}>
-          <Text style={styles.description}>
-            Don’t settle for what life gives you; make life better and build
-            something.
+          <Text style={styles.description} numberOfLine={2}>
+           {description}
           </Text>
         </View>
-        <ImageSlider />
+        <ImageSlider postImage={postImage}/>
         <View style={styles.actionbtn}>
           <View style={styles.startbtn}>
             <TouchableOpacity>

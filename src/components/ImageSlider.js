@@ -3,25 +3,20 @@ import { StyleSheet, Text, View, Dimensions } from "react-native";
 
 import { SliderBox } from "react-native-image-slider-box";
 const { width, height } = Dimensions.get("window");
-export default class ImageSlider extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      images: [
-        "https://source.unsplash.com/1024x768/?nature",
-        "https://source.unsplash.com/1024x768/?water",
-        "https://source.unsplash.com/1024x768/?girl",
-        "https://source.unsplash.com/1024x768/?tree",
-        // require('./assets/images/girl.jpg'),
-      ],
-    };
-  }
 
-  render() {
+export default function ImageSlider({postImage}) {
+  const images= [
+    // "https://source.unsplash.com/1024x768/?water",
+    // "https://source.unsplash.com/1024x768/?girl",
+    // "https://source.unsplash.com/1024x768/?tree",
+   postImage,
+  
+  ]
     return (
+      
       <View style={styles.container}>
         <SliderBox
-          images={this.state.images}
+          images={images}
           onCurrentImagePressed={(index) =>
             console.warn(`image ${index} pressed`)
           }
@@ -44,7 +39,6 @@ export default class ImageSlider extends Component {
       </View>
     );
   }
-}
 
 const styles = StyleSheet.create({
   container: {
